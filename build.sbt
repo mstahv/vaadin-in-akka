@@ -23,9 +23,16 @@ libraryDependencies ++= Seq(
   "com.vaadin.addon" % "vaadin-charts" % "1.1.5",
   "com.vaadin" % "vaadin-client-compiler" % "7.1.12" % "provided",
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225" % "container",
-  "org.eclipse.jetty" % "jetty-plus" % "9.1.3.v20140225" % "container"
-  //"org.eclipse.jetty" % "jetty-annotations" % "9.1.3.v20140225" % "container"
+  "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
+  "org.eclipse.jetty" % "jetty-plus" % "9.1.0.v20131115" % "container",
+  "org.eclipse.jetty" % "jetty-annotations" % "9.1.0.v20131115" % "container"
+)
+
+
+// Needed for jetty-annotations to work with Java 8
+dependencyOverrides ++= Set(
+  "org.ow2.asm" % "asm-commons" % "5.0",
+  "org.ow2.asm" % "asm" % "5.0"
 )
 
 vaadinWebSettings
