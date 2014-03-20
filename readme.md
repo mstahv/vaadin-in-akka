@@ -8,6 +8,16 @@ The build uses currently Maven, so you can just import it to your favourite IDE 
 
 Note for Scala fanatics: You can rewrite any part of the application with Scala as well, and still use nice combination of Akka and Vaadin. Mixing them works fine e.g. with [maven-scala-plugin](http://scala-tools.org/mvnsites/maven-scala-plugin/) or switching into sbt build. And I'm sure you can also save some lines of code too ;-)
 
+###sbt
+
+Running Jetty
+
+    sbt container:start ~aux-compile
+    
+Compiling widgetset
+    
+    sbt compileVaadinWidgetsets
+
 ###TODO:
 
  * Collect feedback
@@ -15,4 +25,3 @@ Note for Scala fanatics: You can rewrite any part of the application with Scala 
  * Consider using Spring or Vaadin CDI to inject system & stocks hub reference
  * Consider adding similar "twitter AI" to suggest buy/hold/sell as in original example. That would make this example a "somelainen muija", Sorry, can't translate :-)
  * Add suplemental sbt build (I guess that is a requirement) and contribute as [Activator template](https://typesafe.com/activator/template/contribute)
-
