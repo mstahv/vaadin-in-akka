@@ -158,7 +158,6 @@ public class StockUI extends UI {
     public ActorRef getHub() {
         // Fetch the hub in real life apps,
         // you'll probably inject this using Spring or CDI
-        // TODO, could also just search the ref from system!?
         StockServlet servlet = (StockServlet) ((VaadinServletService) getSession().
                 getService()).getServlet();
         return servlet.getStocksWatch();
