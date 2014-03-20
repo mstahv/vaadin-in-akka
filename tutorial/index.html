@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Vaadin( )in Akka aka Reactive Stocks with Vaadin - Activator Template</title>
+</head>
+<body>
+<div>
+    <h2> Explore the Code</h2>
+
+    <p>You've just created an version of the iconic Reactive Stocks Akka example. Two big differences to the original project are that this version is build with Java 8 only and the UI is also built with Java only - with <a href="https://vaadin.com/">Vaadin</a>. With Vaadin the UI development simplifies radically as developer can as developers don't need to think about browser, communication, html or such at all. Still, behind the scenes, Vaadin uses modern WebSocket communication to quickly show updates on UI.</p>
+    
+    <p>Once the application has been compiled and the server started, your application can be accessed at: http://localhost:8080/
+    Check in Run to see the server status.</p>
+
+    <p>Let's look at the <a href="#code/src/java/com/vaadin/vaadininmuija/akka/StockHubActor.java"
+      class="shortcut">src/java/com/vaadin/vaadininmuija/akka/StockHubActor.java</a> file. Here you will see the new lambda optimized Actor implementation.
+    </p>
+</div>
+<div>
+    <h2> Vaadin integration</h2>
+    <p>Vaadin integration start from starting the actor system. This example runs as web application, thus the <a href="#code/src/java/com/vaadin/vaadininmuija/StockServlet.java"
+      class="shortcut">Servlet</a> is a natural place to start the base system. It also holds reference to system and stocks hub.
+    </p>
+    <p><a href="#code/src/java/com/vaadin/vaadininmuija/StockUI.java"
+      class="shortcut">StockUI</a> contains the actual UI code: it is mostly basic Vaadin code to set up some components and adding them to layouts. In init method it also creates a special UIActor that will mediate the stock data from the actor system to Vaadin UI. Checkboxes send messages to stocks hub that which stock symbols UIActor should follow.
+    </p>
+    <p>The purpose of <a href="#code/src/java/com/vaadin/vaadininmuija/akka/UIActor.java"
+      class="shortcut">UIActor</a> is to mediate messages into Vaadin UI instance. This is the only Actor in this example system that knows something about Vaadin. In modular system you might want split that, Servlet and the actual UI code into a separate module. 
+    </p>
+</div>
+<div>
+    <h2>Next Steps</h2>
+
+    <p>You're now ready to really start learning how to write scalable and thread safe applications using Akka and Vaadin!   While this tutorial you can get the basic integration example running, you'll probably still need more skills for either Akka or Vaadin, or possibly both. Activator itself contains several cool Akka examples. For more information about Vaadin, <a href="https://vaadin.com/book">the Book</a> is the definitive source. Also other parts of <a href="https://vaadin.com/">vaadin.com</a>, like our <a href="https://vaadin.com/forum">helpful forum</a>, may become useful.</p>
+
+</div>
+
+</body>
+</html>
