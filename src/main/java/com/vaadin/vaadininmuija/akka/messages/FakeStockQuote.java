@@ -12,6 +12,7 @@ public class FakeStockQuote {
     private Double lastPrice = 100 + random.nextDouble() * 50;
 
     public StockQuote create(int secondDelta) {
+        // TODO improve the algorithm, this will slowly close zero when run some hours
         Double price = lastPrice = lastPrice * (0.95 + (0.1 * random.nextDouble()));
         // TODO this example should definitely use Java 8 dates :-)
         final Date date = new Date();
