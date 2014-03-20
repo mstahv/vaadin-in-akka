@@ -17,11 +17,11 @@ resolvers ++= Seq(
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.3.0",
-  "com.vaadin" % "vaadin-server" % "7.1.12",
-  "com.vaadin" % "vaadin-push" % "7.1.12",
-  "com.vaadin" % "vaadin-themes" % "7.1.12",
+  "com.vaadin" % "vaadin-server" % "7.2-SNAPSHOT",
+  "com.vaadin" % "vaadin-push" % "7.2-SNAPSHOT",
+  "com.vaadin" % "vaadin-themes" % "7.2-SNAPSHOT",
   "com.vaadin.addon" % "vaadin-charts" % "1.1.5",
-  "com.vaadin" % "vaadin-client-compiler" % "7.1.12" % "provided",
+  "com.vaadin" % "vaadin-client-compiler" % "7.2-SNAPSHOT" % "provided",
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
   "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
   "org.eclipse.jetty" % "jetty-plus" % "9.1.0.v20131115" % "container",
@@ -37,7 +37,8 @@ dependencyOverrides ++= Set(
 
 vaadinWebSettings
 
-enableCompileVaadinWidgetsets in resourceGenerators := false
+// Using this you can avoid lengthy GWT compilation on each launch
+// enableCompileVaadinWidgetsets in resourceGenerators := false
 
 
 

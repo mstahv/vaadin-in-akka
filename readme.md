@@ -6,22 +6,24 @@ The project uses Java 8, so be sure to use that when trying this out. StockHubAc
 
 The build uses currently Maven, so you can just import it to your favourite IDE and start playing with it. At least [NetBeans 8](https://netbeans.org) works out of the box with its Java 8 support. Also, if you just wish to see how the app looks, you can use `mvn package jetty:run` to launch the app locally from command line.
 
-Note for Scala fanatics: You can rewrite any part of the application with Scala as well, and still use nice combination of Akka and Vaadin. Mixing them works fine e.g. with [maven-scala-plugin](http://scala-tools.org/mvnsites/maven-scala-plugin/) or switching into sbt build. And I'm sure you can also save some lines of code too ;-)
+Note for Scala fanatics: You can rewrite any part of the application with Scala as well, and still use nice combination of Akka and Vaadin. Mixing them works fine e.g. with [maven-scala-plugin](http://scala-tools.org/mvnsites/maven-scala-plugin/) or using the sbt build. And I'm sure you can also save some lines of code too ;-)
 
-###sbt
+### Building/running with Maven
+
+mvn package jetty:run
+
+### SBT
 
 Running Jetty
 
     sbt container:start ~aux-compile
     
-Compiling widgetset
+Generating Eclipse configurations:
     
-    sbt compileVaadinWidgetsets
+    sbt eclipse
 
 ###TODO:
 
- * Collect feedback
  * Use Java 8 date types in StockQuote
  * Consider using Spring or Vaadin CDI to inject system & stocks hub reference
  * Consider adding similar "twitter AI" to suggest buy/hold/sell as in original example. That would make this example a "somelainen muija", Sorry, can't translate :-)
- * Add suplemental sbt build (I guess that is a requirement) and contribute as [Activator template](https://typesafe.com/activator/template/contribute)
