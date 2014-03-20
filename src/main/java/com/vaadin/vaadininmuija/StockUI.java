@@ -15,10 +15,13 @@ import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
+import com.vaadin.server.AbstractErrorMessage;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServletService;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
@@ -37,9 +40,9 @@ import java.util.HashMap;
  * instantiates one for itself and shuts it down when detached. During activity,
  * the UIActor, calls methods in this class to update the ui.
  * <p>
- * The code also communicates with the hub actor, telling which stocks the uiActor
- * should watch/unwatch.
- * 
+ * The code also communicates with the hub actor, telling which stocks the
+ * uiActor should watch/unwatch.
+ *
  */
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -48,6 +51,11 @@ import java.util.HashMap;
 public class StockUI extends UI {
 
     final VerticalLayout layout = new VerticalLayout();
+
+    private final Label msg = new Label("<em>The demo backend generates random stock "
+            + "prices at random time. Last 50 points per symbol are "
+            + "displayed at once.</em>",
+            ContentMode.HTML);
 
     Chart chart = new Chart(ChartType.SPLINE);
 
@@ -106,7 +114,7 @@ public class StockUI extends UI {
         });
         controls.addComponents(customToggle, customSymbol);
 
-        layout.addComponent(controls);
+        layout.addComponents(controls, msg);
         setContent(layout);
 
         // TODO add sell/buy suggestions
@@ -132,7 +140,8 @@ public class StockUI extends UI {
             }
             for (StockQuote value : values) {
                 final boolean shift = series.size() >= 50;
-                final DataSeriesItem dataSeriesItem = new DataSeriesItem(value.getTimeStamp(), value.getPrice());
+                final DataSeriesItem dataSeriesItem = new DataSeriesItem(value.
+                        getTimeStamp(), value.getPrice());
                 series.add(dataSeriesItem, shift, shift);
             }
         });
@@ -141,7 +150,8 @@ public class StockUI extends UI {
     private ActorSystem getSystem() {
         // Fetch the ActorSystem reference from servlet, in real life apps,
         // you'll probably inject this using Spring or CDI
-        StockServlet servlet = (StockServlet) ((VaadinServletService) getSession().getService()).getServlet();
+        StockServlet servlet = (StockServlet) ((VaadinServletService) getSession().
+                getService()).getServlet();
         return servlet.getSystem();
     }
 
@@ -149,13 +159,15 @@ public class StockUI extends UI {
         // Fetch the hub in real life apps,
         // you'll probably inject this using Spring or CDI
         // TODO, could also just search the ref from system!?
-        StockServlet servlet = (StockServlet) ((VaadinServletService) getSession().getService()).getServlet();
+        StockServlet servlet = (StockServlet) ((VaadinServletService) getSession().
+                getService()).getServlet();
         return servlet.getStocksWatch();
     }
 
     private void hideSymbol(String symbol) {
         symbolToChart.remove(symbol);
-        chart.getConfiguration().setSeries(new ArrayList(symbolToChart.values()));
+        chart.getConfiguration().
+                setSeries(new ArrayList(symbolToChart.values()));
         chart.drawChart();
     }
 
@@ -163,9 +175,14 @@ public class StockUI extends UI {
         PlotOptionsSpline po = new PlotOptionsSpline();
         po.setMarker(new Marker(false));
         po.setShadow(false);
-        po.setAnimation(false);
         final Configuration cfg = chart.getConfiguration();
         cfg.getChart().setBackgroundColor(new SolidColor(0, 0, 0, 0));
+        /*
+         * This controls the duration of dynamic update animation. If you have 
+         * really lots of updates, it might be better to disable chart 
+         * animations and/or to add one chart per series. 
+         * Ticket about missing Java API: http://dev.vaadin.com/ticket/13468
+         */
         chart.setJsonConfig("{chart:{animation:{duration: 150}}}");
         cfg.setPlotOptions(po);
         cfg.setTitle("Vaadin( )in Akka");
