@@ -5,25 +5,25 @@
 <body>
 <div>
     <h2> Explore the Code</h2>
-
-    <p>You've just created an version of the iconic Reactive Stocks Akka example. Two big differences to the original project are that this version is build with Java 8 only and the UI is also built with Java only - with <a href="https://vaadin.com/">Vaadin</a>. With Vaadin the UI development simplifies radically as developer can as developers don't need to think about browser, communication, html or such at all. Still, behind the scenes, Vaadin uses modern WebSocket communication to quickly show updates on UI.</p>
     
     <p>Once the application has been compiled and the server started, your application can be accessed at: http://localhost:8080/
     Check in Run to see the server status.</p>
 
-    <p>Let's look at the <a href="#code/src/java/com/vaadin/vaadininmuija/akka/StockHubActor.java"
-      class="shortcut">src/java/com/vaadin/vaadininmuija/akka/StockHubActor.java</a> file. Here you will see the new lambda optimized Actor implementation.
+    <p>You've just created a version of the iconic Reactive Stocks Akka example. Two big differences to the original project are that this version is build with Java 8 only and the UI is also built with Java only - with <a href="https://vaadin.com/">Vaadin</a>. With Vaadin the UI development simplifies radically as developer can as developers don't need to think about browser, communication, html or such at all. Still, behind the scenes, Vaadin uses modern WebSocket communication to quickly show updates on UI.</p>
+
+    <p>Let's look at the <a href="#code/src/main/java/com/vaadin/vaadininmuija/akka/StockHubActor.java"
+      class="shortcut">src/main/java/com/vaadin/vaadininmuija/akka/StockHubActor.java</a> file. Here you will see the new lambda optimized Actor implementation.
     </p>
 </div>
 <div>
     <h2> Vaadin integration</h2>
-    <p>Vaadin integration start from starting the actor system. This example runs as web application, thus the <a href="#code/src/java/com/vaadin/vaadininmuija/StockServlet.java"
+    <p>Vaadin integration start from starting the actor system. This example runs as web application, thus the <a href="#code/src/main/java/com/vaadin/vaadininmuija/StockServlet.java"
       class="shortcut">Servlet</a> is a natural place to start the base system. It also holds reference to system and stocks hub.
     </p>
-    <p><a href="#code/src/java/com/vaadin/vaadininmuija/StockUI.java"
+    <p><a href="#code/src/main/java/com/vaadin/vaadininmuija/StockUI.java"
       class="shortcut">StockUI</a> contains the actual UI code: it is mostly basic Vaadin code to set up some components and adding them to layouts. In init method it also creates a special UIActor that will mediate the stock data from the actor system to Vaadin UI. Checkboxes send messages to stocks hub that which stock symbols UIActor should follow.
     </p>
-    <p>The purpose of <a href="#code/src/java/com/vaadin/vaadininmuija/akka/UIActor.java"
+    <p>The purpose of <a href="#code/src/main/java/com/vaadin/vaadininmuija/akka/UIActor.java"
       class="shortcut">UIActor</a> is to mediate messages into Vaadin UI instance. This is the only Actor in this example system that knows something about Vaadin. In modular system you might want split that, Servlet and the actual UI code into a separate module. 
     </p>
 </div>
