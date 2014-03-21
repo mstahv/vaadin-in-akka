@@ -6,6 +6,12 @@ scalacOptions += "-target:jvm-1.8"
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
+initialize := {
+ val _ = initialize.value
+ if (sys.props("java.specification.version") != "1.8")
+   sys.error("Java 8 is required for this project.")
+}
+
 crossPaths := false
 
 autoScalaLibrary := false
@@ -21,8 +27,10 @@ libraryDependencies ++= Seq(
   "com.vaadin" % "vaadin-push" % "7.2-SNAPSHOT",
   "com.vaadin" % "vaadin-themes" % "7.2-SNAPSHOT",
   "com.vaadin.addon" % "vaadin-charts" % "1.1.5",
+  "javax" % "javaee-web-api" % "7.0",
+  "org.eclipse.jetty.aggregate" % "jetty-all" % "9.1.0.v20131115",
   "com.vaadin" % "vaadin-client-compiler" % "7.2-SNAPSHOT" % "provided",
-  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
+//  "javax" % "javaee-web-api" % "7.0" % "container",
   "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
   "org.eclipse.jetty" % "jetty-plus" % "9.1.0.v20131115" % "container",
   "org.eclipse.jetty" % "jetty-annotations" % "9.1.0.v20131115" % "container"
