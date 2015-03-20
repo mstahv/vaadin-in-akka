@@ -1,6 +1,6 @@
 package com.vaadin.vaadininmuija.akka.messages;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 /**
@@ -14,9 +14,7 @@ public class FakeStockQuote {
     public StockQuote create(int secondDelta) {
         // TODO improve the algorithm, this will slowly close zero when run some hours
         Double price = lastPrice = lastPrice * (0.95 + (0.1 * random.nextDouble()));
-        // TODO this example should definitely use Java 8 dates :-)
-        final Date date = new Date();
-        date.setSeconds(date.getSeconds() - secondDelta);
+        final LocalDateTime date = LocalDateTime.now().minusSeconds(secondDelta);
         return new StockQuote(price, date);
     }
 

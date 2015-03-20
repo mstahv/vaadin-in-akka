@@ -3,6 +3,7 @@ package com.vaadin.vaadininmuija;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.addon.charts.model.AxisType;
 import com.vaadin.addon.charts.model.ChartType;
@@ -11,11 +12,11 @@ import com.vaadin.addon.charts.model.DataSeries;
 import com.vaadin.addon.charts.model.DataSeriesItem;
 import com.vaadin.addon.charts.model.Marker;
 import com.vaadin.addon.charts.model.PlotOptionsSpline;
+import com.vaadin.addon.charts.model.Series;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
-import com.vaadin.server.AbstractErrorMessage;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServletService;
 import com.vaadin.shared.ui.label.ContentMode;
@@ -30,7 +31,10 @@ import com.vaadin.vaadininmuija.akka.UIActor;
 import com.vaadin.vaadininmuija.akka.messages.StockQuote;
 import com.vaadin.vaadininmuija.akka.messages.UnwatchStock;
 import com.vaadin.vaadininmuija.akka.messages.WatchStock;
+
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -140,8 +144,8 @@ public class StockUI extends UI {
             }
             for (StockQuote value : values) {
                 final boolean shift = series.size() >= 50;
-                final DataSeriesItem dataSeriesItem = new DataSeriesItem(value.
-                        getTimeStamp(), value.getPrice());
+				final DataSeriesItem dataSeriesItem = new DataSeriesItem(
+						Date.from(value.getTimeStamp().toInstant(ZoneOffset.UTC)), value.getPrice());
                 series.add(dataSeriesItem, shift, shift);
             }
         });
@@ -166,7 +170,7 @@ public class StockUI extends UI {
     private void hideSymbol(String symbol) {
         symbolToChart.remove(symbol);
         chart.getConfiguration().
-                setSeries(new ArrayList(symbolToChart.values()));
+                setSeries(new ArrayList<Series>(symbolToChart.values()));
         chart.drawChart();
     }
 

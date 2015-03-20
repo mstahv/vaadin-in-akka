@@ -1,22 +1,24 @@
 package com.vaadin.vaadininmuija.akka.messages;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class StockQuote implements Serializable {
-    private final Double price;
-    private final Date timeStamp;
+	private static final long serialVersionUID = -3763258204335587693L;
 
-    public StockQuote(Double price, Date timeStamp) {
+	private final Double price;
+    private final LocalDateTime timeStamp;
+
+    public StockQuote(Double price, LocalDateTime date) {
         this.price = price;
-        this.timeStamp = timeStamp;
+        this.timeStamp = date;
     }
 
     public Double getPrice() {
         return price;
     }
 
-    public Date getTimeStamp() {
+    public LocalDateTime getTimeStamp() {
         return timeStamp;
     }
     

@@ -4,7 +4,8 @@ import java.util.List;
 
 public class StockHistory extends AbstractStockMessage {
 
-    private final StockQuote[] history;
+	private static final long serialVersionUID = 2858707450440055404L;
+	private final StockQuote[] history;
 
     public StockHistory(String symbol, List<StockQuote> history) {
         super(symbol);
