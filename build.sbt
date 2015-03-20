@@ -2,6 +2,8 @@ name := "vaadin-in-akka"
 
 version := "1.0-SNAPSHOT"
 
+scalaVersion := "2.11.6"
+
 scalacOptions += "-target:jvm-1.8"
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
@@ -23,7 +25,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor" % "2.3.0",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.9",
   "com.vaadin" % "vaadin-server" % "7.3.5",
   "com.vaadin" % "vaadin-push" % "7.3.5",
   "com.vaadin" % "vaadin-themes" % "7.3.5",
@@ -47,7 +49,4 @@ dependencyOverrides ++= Set(
 vaadinWebSettings
 
 // Using this you can avoid lengthy GWT compilation on each launch
-// enableCompileVaadinWidgetsets in resourceGenerators := false
-
-
-
+//enableCompileVaadinWidgetsets in resourceGenerators := false
