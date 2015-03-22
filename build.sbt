@@ -24,26 +24,21 @@ resolvers ++= Seq(
   "Vaadin add-ons" at "http://maven.vaadin.com/vaadin-addons"
 )
 
+val jettyVersion = "9.2.10.v20150310"
+val vaadinVersion = "7.4.2"
+
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.3.9",
-  "com.vaadin" % "vaadin-server" % "7.3.5",
-  "com.vaadin" % "vaadin-push" % "7.3.5",
-  "com.vaadin" % "vaadin-themes" % "7.3.5",
-  "com.vaadin.addon" % "vaadin-charts" % "1.1.5",
+  "com.vaadin" % "vaadin-server" % vaadinVersion,
+  "com.vaadin" % "vaadin-push" % vaadinVersion,
+  "com.vaadin" % "vaadin-themes" % vaadinVersion,
+  "com.vaadin.addon" % "vaadin-charts" % "1.1.8",
   "javax" % "javaee-web-api" % "7.0",
-  "org.eclipse.jetty.aggregate" % "jetty-all" % "9.1.0.v20131115",
-  "com.vaadin" % "vaadin-client-compiler" % "7.3.5" % "provided",
-//  "javax" % "javaee-web-api" % "7.0" % "container",
-  "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
-  "org.eclipse.jetty" % "jetty-plus" % "9.1.0.v20131115" % "container",
-  "org.eclipse.jetty" % "jetty-annotations" % "9.1.0.v20131115" % "container"
-)
-
-
-// Needed for jetty-annotations to work with Java 8
-dependencyOverrides ++= Set(
-  "org.ow2.asm" % "asm-commons" % "5.0.3",
-  "org.ow2.asm" % "asm" % "5.0.3"
+  "org.eclipse.jetty.aggregate" % "jetty-all" % jettyVersion,
+  "com.vaadin" % "vaadin-client-compiler" % vaadinVersion % "provided",
+  "org.eclipse.jetty" % "jetty-webapp" % jettyVersion % "container",
+  "org.eclipse.jetty" % "jetty-plus" % jettyVersion % "container",
+  "org.eclipse.jetty" % "jetty-annotations" % jettyVersion % "container"
 )
 
 vaadinWebSettings
