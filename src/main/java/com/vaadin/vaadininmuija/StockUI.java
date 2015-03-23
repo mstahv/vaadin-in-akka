@@ -48,7 +48,7 @@ import java.util.HashMap;
  * uiActor should watch/unwatch.
  *
  */
-@Theme("mytheme")
+@Theme("valo")
 @SuppressWarnings("serial")
 @Push
 @Title("Vaadin( )in Akka")

@@ -10,7 +10,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<vaadin.version>7.3.5</vaadin.version>
+		<vaadin.version>7.4.2</vaadin.version>
 		<vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
         <jettyVersion>9.2.10.v20150310</jettyVersion>
 	</properties>
@@ -46,11 +46,6 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client-compiled</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
 		<!--
@@ -96,7 +91,7 @@
             <type>jar</type>
         </dependency>
         
-        <!-- If you want to use main method in Applicaiton, remove provided scope
+        <!-- If you want to use main method in Application, remove provided scope
         from these.
         -->
         <dependency>
