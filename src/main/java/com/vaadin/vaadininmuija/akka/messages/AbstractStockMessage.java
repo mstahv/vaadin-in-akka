@@ -7,7 +7,8 @@ import java.io.Serializable;
  */
 public abstract class AbstractStockMessage implements Serializable {
 
-    private final String symbol;
+	private static final long serialVersionUID = -6449282066517258308L;
+	private final String symbol;
 
     public AbstractStockMessage(String symbol) {
         this.symbol = symbol;

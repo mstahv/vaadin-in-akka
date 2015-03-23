@@ -2,3 +2,8 @@ src/main/webapp/VAADIN/widgetsets
 .idea
 .idea_modules
 target
+/.settings/
+/.cache
+/.classpath
+/.project
+/bin/

@@ -16,8 +16,8 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet(value = "/*", asyncSupported = true)
 @VaadinServletConfiguration(productionMode = false, ui = StockUI.class, widgetset = "com.vaadin.vaadininmuija.AppWidgetSet")
 public class StockServlet extends VaadinServlet {
-
-    private ActorSystem system;
+	private static final long serialVersionUID = -5478647387084011052L;
+	private ActorSystem system;
     private ActorRef stockWatchHub;
 
     public ActorRef getStocksWatch() {

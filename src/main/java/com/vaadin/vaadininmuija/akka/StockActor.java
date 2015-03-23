@@ -92,7 +92,7 @@ public class StockActor extends UntypedActor {
      * Simple internally used message to schedule demo data generation
      */
     public static class FetchLatest implements Serializable {
-
+		private static final long serialVersionUID = -4896383249835327085L;
     }
 
 }
