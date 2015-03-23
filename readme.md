@@ -24,6 +24,5 @@ Generating Eclipse configurations:
 
 ###TODO:
 
- * Use Java 8 date types in StockQuote
  * Consider using Spring or Vaadin CDI to inject system & stocks hub reference
  * Consider adding similar "twitter AI" to suggest buy/hold/sell as in original example. That would make this example a "somelainen muija", Sorry, can't translate :-)
